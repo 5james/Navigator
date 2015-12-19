@@ -1,0 +1,17 @@
+/bin/
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+*.class
