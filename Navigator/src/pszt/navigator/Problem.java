@@ -1,4 +1,7 @@
-public interface Problem {
+package pszt.navigator;
+
+interface Problem
+{
 	void init();
 
 	Object h(Object o);
