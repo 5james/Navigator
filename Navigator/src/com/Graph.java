@@ -37,5 +37,7 @@ public class Graph implements Problem {
 		// TODO Auto-generated method stub
 
 	}
+	
+	//mojazmiana
 
 }
