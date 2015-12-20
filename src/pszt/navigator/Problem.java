@@ -6,7 +6,7 @@ interface Problem
 
 	Object h(Object o);
 
-	boolean exnedable();
+	boolean isExnedable();
 
 	void extendStates();
 

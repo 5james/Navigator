@@ -28,7 +28,7 @@ public class Graph implements Problem {
 	}
 
 	@Override
-	public boolean exnedable() {
+	public boolean isExnedable() {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -38,7 +38,7 @@ public class Graph implements Problem {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	//mojazmiana
 
 }
