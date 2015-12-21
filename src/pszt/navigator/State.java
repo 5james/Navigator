@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class State implements ProblemState {
 	Vector<Graph.Node> path = new Vector<Graph.Node>();
-	public double distanceTraveled;
+	public double distanceTraveled = 0;
 
 	@Override
 	public double getEstimatedLength() {

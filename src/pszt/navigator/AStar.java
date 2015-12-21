@@ -41,11 +41,13 @@ public class AStar {
 			{
 				next.wypiszwierzcholki();
 				System.out.println("FOUND PATH IN " + steps + " STEPS");
+				System.out.println("LENGTH OF THAT PATH = " + next.getEstimatedLength());
 				pathFound = true;
 			}
 			else
-				System.out.println("Mieli " + steps);
+				System.out.println("Mieli " + steps + "      " + states.size());
 		}
+		
 	}
 	
 	private int findMinimum()

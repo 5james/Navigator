@@ -26,6 +26,10 @@ public class Graph implements Problem {
 		double x = Math.random();
 		//System.out.println(x);
 		createNeighbourhood(rate, x);
+
+		//TODO debug usun
+		System.out.println("Lewa strona równania = " + x);
+		System.out.println("Rate = " + rate);
 		
 		//TODO usun
 		
@@ -131,8 +135,9 @@ public class Graph implements Problem {
 		for (int i = 0; i < back.neighbours.size(); i++)
 		{
 			State s = new State();
-			s.path = (Vector<Node>) problem.path.clone();
-			if (!s.path.contains(back.neighbours.elementAt(i)))
+			copyPath(problem, s);
+			
+			if (!stateHasNode(s, back.neighbours.elementAt(i)))
 			{
 				s.path.add(back.neighbours.elementAt(i));
 				double tempDistance = back.point.distance(back.neighbours.elementAt(i).point);
@@ -142,6 +147,24 @@ public class Graph implements Problem {
 		}
 		
 		return tempList;
+	}
+	
+	private boolean stateHasNode(State s, Node node)
+	{
+		for (int i = 0; i < s.path.size(); i++)
+		{
+			if (s.path.elementAt(i) == node)
+				return true;
+		}
+		return false;
+	}
+	
+	private void copyPath(State from, State to)
+	{
+		for (int i = 0; i < from.path.size(); i++)
+		{
+			to.path.addElement(from.path.elementAt(i));
+		}
 	}
 	
 
