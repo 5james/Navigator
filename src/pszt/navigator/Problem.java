@@ -1,14 +1,10 @@
 package pszt.navigator;
 
+import java.util.List;
+
 interface Problem
 {
-	void init();
-
-	Object h(Object o);
-
-	boolean isExnedable();
-
-	void extendStates();
-
-	void solve();
+	public List<ProblemState> extendStates(ProblemState p);
+	
+	public ProblemState init();
 }

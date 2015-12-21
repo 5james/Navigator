@@ -1,6 +1,8 @@
 package pszt.navigator;
 
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 public class Graph implements Problem {
@@ -8,20 +10,45 @@ public class Graph implements Problem {
 	class Node {
 		Point2D.Double point;
 		Vector<Node> neighbours = new Vector<Node>();
+		double h;
 	}
 
-	Node starter;
-	Node finish;
-	Vector<Node> nodes = new Vector<Node>();
+	private Node starter = null;
+	private Node finish = null;
+	private Vector<Node> nodes = new Vector<Node>();
+
+	
 	
 	Graph(int amountOfPoints, double rate)
 	{
 		createNodes(amountOfPoints);
 		
 		double x = Math.random();
+		//System.out.println(x);
 		createNeighbourhood(rate, x);
+		
+		//TODO usun
+		
+		starter = nodes.elementAt(0);
+		
+		finish = nodes.elementAt(nodes.size()-1);
+		
 	}
 	
+	
+	public void computeH()
+	{
+		if (finish != null)
+		{
+			
+			for (int i = 0; i < nodes.size(); i++)
+			{
+				Point2D.Double pt = nodes.elementAt(i).point;
+				nodes.elementAt(i).h = finish.point.distance(pt);
+			}
+		}
+	}
+
 	private void createNeighbourhood(double rate, double x)
 	{
 		for (int i=0; i < nodes.size()-1; i++)
@@ -96,37 +123,65 @@ public class Graph implements Problem {
 		}
 		System.out.println(size);
 	}
+	
 
 	@Override
-	public void init() {
+	public List<ProblemState> extendStates(ProblemState p) {
 		// TODO Auto-generated method stub
-
+		List<ProblemState> tempList= new ArrayList<ProblemState>();
+		State problem = (State)p;
+		Node back = problem.path.lastElement();
+		for (int i = 0; i < back.neighbours.size(); i++)
+		{
+			State s = new State();
+			s.path = (Vector<Node>) problem.path.clone();
+			if (!s.path.contains(back.neighbours.elementAt(i)))
+			{
+				s.path.add(back.neighbours.elementAt(i));
+				tempList.add(s);
+			}
+		}
+		
+		return tempList;
 	}
+	
+	
+
+	
+	
+	
+	
 
 	@Override
-	public Object h(Object o) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProblemState init() {
+		State s = new State();
+		s.path.addElement(starter);
+		return s;
+	}
+	
+	public Node getStarter() {
+		return starter;
 	}
 
-	@Override
-	public void solve() {
-		// TODO Auto-generated method stub
-
+	public void setStarter(Node starter) {
+		this.starter = starter;
 	}
 
-	@Override
-	public boolean isExnedable() {
-		// TODO Auto-generated method stub
-		return false;
+
+
+	public Node getFinish() {
+		return finish;
 	}
 
-	@Override
-	public void extendStates() {
-		// TODO Auto-generated method stub
 
+
+	public void setFinish(Node finish) {
+		this.finish = finish;
 	}
 
-	//mojazmiana
+
+
+
+
 
 }
