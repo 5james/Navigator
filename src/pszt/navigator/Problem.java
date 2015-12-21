@@ -7,4 +7,6 @@ interface Problem
 	public List<ProblemState> extendStates(ProblemState p);
 	
 	public ProblemState init();
+	
+	public Object getFinish();
 }

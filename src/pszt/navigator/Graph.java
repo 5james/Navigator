@@ -29,10 +29,8 @@ public class Graph implements Problem {
 		
 		//TODO usun
 		
-		starter = nodes.elementAt(0);
-		
-		finish = nodes.elementAt(nodes.size()-1);
-		
+		setStarter(nodes.elementAt(0));
+		setFinish(nodes.elementAt(nodes.size()-1));
 	}
 	
 	
@@ -127,7 +125,6 @@ public class Graph implements Problem {
 
 	@Override
 	public List<ProblemState> extendStates(ProblemState p) {
-		// TODO Auto-generated method stub
 		List<ProblemState> tempList= new ArrayList<ProblemState>();
 		State problem = (State)p;
 		Node back = problem.path.lastElement();
@@ -138,18 +135,14 @@ public class Graph implements Problem {
 			if (!s.path.contains(back.neighbours.elementAt(i)))
 			{
 				s.path.add(back.neighbours.elementAt(i));
+				double tempDistance = back.point.distance(back.neighbours.elementAt(i).point);
+				s.distanceTraveled += tempDistance;
 				tempList.add(s);
 			}
 		}
 		
 		return tempList;
 	}
-	
-	
-
-	
-	
-	
 	
 
 	@Override
@@ -169,7 +162,7 @@ public class Graph implements Problem {
 
 
 
-	public Node getFinish() {
+	public Object getFinish() {
 		return finish;
 	}
 
@@ -177,11 +170,6 @@ public class Graph implements Problem {
 
 	public void setFinish(Node finish) {
 		this.finish = finish;
+		this.computeH();
 	}
-
-
-
-
-
-
 }
