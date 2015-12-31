@@ -9,14 +9,22 @@ public class AStar {
 	private Problem problem;
 	int steps = 0;
 	
-	AStar(Problem p)
+	public AStar(Problem p)
 	{
 		problem=p;
 		ProblemState tempState = p.init();
 		states.add(tempState);
 		next = tempState;
 	}
-	
+
+	//Marcin 2015-12-30
+	//bezparametrowy konstruktor, uzywany w kontrolerze
+	//z tego co pamietam chcemy zmienic AStar by nie uzywal obiektu Problemu (w domysle grafu), wiec konstruktor jak znalazl ;)
+	public AStar()
+	{
+
+	}
+
 	void solve()
 	{
 		boolean pathFound = false;

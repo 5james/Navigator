@@ -7,19 +7,20 @@ import java.util.Vector;
 
 public class Graph implements Problem {
 
-	class Node {
-		Point2D.Double point;
-		Vector<Node> neighbours = new Vector<Node>();
-		double h;
-	}
+
+//Marcin 2015-12-29
+//moved outsite to make this class public
+//	class Node {
+//		Point2D.Double point;
+//		Vector<Node> neighbours = new Vector<Node>();
+//		double h;
+//	}
 
 	private Node starter = null;
 	private Node finish = null;
 	private Vector<Node> nodes = new Vector<Node>();
 
-	
-	
-	Graph(int amountOfPoints, double rate)
+	public Graph(int amountOfPoints, double rate)
 	{
 		createNodes(amountOfPoints);
 		
@@ -28,7 +29,7 @@ public class Graph implements Problem {
 		createNeighbourhood(rate, x);
 
 		//TODO debug usun
-		System.out.println("Lewa strona równania = " + x);
+		System.out.println("Lewa strona rï¿½wnania = " + x);
 		System.out.println("Rate = " + rate);
 		
 		//TODO usun
@@ -36,8 +37,7 @@ public class Graph implements Problem {
 		setStarter(nodes.elementAt(0));
 		setFinish(nodes.elementAt(nodes.size()-1));
 	}
-	
-	
+
 	public void computeH()
 	{
 		if (finish != null)
@@ -183,16 +183,29 @@ public class Graph implements Problem {
 		this.starter = starter;
 	}
 
-
-
-	public Object getFinish() {
+	public Node getFinish() {
 		return finish;
 	}
-
-
 
 	public void setFinish(Node finish) {
 		this.finish = finish;
 		this.computeH();
 	}
+
+	//Marcin 2015-12-29
+	public Vector<Node> getNodes()
+	{
+		return nodes;
+	}
+
+	public Node getNodeAtPoint(Point2D.Double point)
+	{
+		for(Node n : nodes)
+		{
+			if(n.getPoint().equals(point))
+				return n;
+		}
+		return null;
+	}
 }
+

@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 import java.util.Vector;
 
 public class State implements ProblemState {
-	Vector<Graph.Node> path = new Vector<Graph.Node>();
+	Vector<Node> path = new Vector<>();
 	public double distanceTraveled = 0;
 
 	@Override
@@ -16,8 +16,8 @@ public class State implements ProblemState {
 
 	@Override
 	public boolean isFinish(Object finish) {
-		Graph.Node nodeFinish = (Graph.Node) finish;
-		Graph.Node pathFinish = path.lastElement();
+		Node nodeFinish = (Node) finish;
+		Node pathFinish = path.lastElement();
 		if (pathFinish.equals(nodeFinish))
 			return true;
 		return false;
