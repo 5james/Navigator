@@ -24,7 +24,7 @@ public class Graph implements Problem {
 	{
 		createNodes(amountOfPoints);
 		
-		
+		//
 		//System.out.println(x);
 		createNeighbourhood(rate);
 
@@ -60,6 +60,7 @@ public class Graph implements Problem {
 				Point2D.Double p2 = nodes.elementAt(j).point;
 				double exp = Math.exp(-(p1.distance(p2))/rate);
 				double x = Math.random();
+				
 				if (x<exp)
 				{
 					connectNeighbours (i, j);
