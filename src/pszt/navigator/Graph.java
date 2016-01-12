@@ -24,12 +24,11 @@ public class Graph implements Problem {
 	{
 		createNodes(amountOfPoints);
 		
-		double x = Math.random();
+		
 		//System.out.println(x);
-		createNeighbourhood(rate, x);
+		createNeighbourhood(rate);
 
 		//TODO debug usun
-		System.out.println("Lewa strona r�wnania = " + x);
 		System.out.println("Rate = " + rate);
 		
 		//TODO usun
@@ -51,7 +50,7 @@ public class Graph implements Problem {
 		}
 	}
 
-	private void createNeighbourhood(double rate, double x)
+	private void createNeighbourhood(double rate)
 	{
 		for (int i=0; i < nodes.size()-1; i++)
 		{
@@ -60,6 +59,7 @@ public class Graph implements Problem {
 				Point2D.Double p1 = nodes.elementAt(i).point;
 				Point2D.Double p2 = nodes.elementAt(j).point;
 				double exp = Math.exp(-(p1.distance(p2))/rate);
+				double x = Math.random();
 				if (x<exp)
 				{
 					connectNeighbours (i, j);
