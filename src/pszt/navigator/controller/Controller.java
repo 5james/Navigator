@@ -59,6 +59,7 @@ public class Controller
         {
             graph.setStarter(start);
             graph.setFinish(end);
+
             //użycie algorytmu do rozwiązania zadania
             //TODO: 2015-12-30 aStarAlgorithm.setGraph, .solve itd
         }
