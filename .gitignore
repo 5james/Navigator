@@ -15,4 +15,6 @@ bin/
 *.war
 *.ear
 
+*.MF
+
 *.class

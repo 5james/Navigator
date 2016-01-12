@@ -49,6 +49,8 @@ public class Controller
         }
 
         graph = new Graph(numberOfNodes, rate);
+        graph.setStarter(start);
+        graph.setFinish(end);
         view.setGraph(graph);
         view.updateView();
     }
@@ -100,5 +102,29 @@ public class Controller
 
     public void setStart(Node start) {
         this.start = start;
+    }
+
+    public Node getStart() {
+        return start;
+    }
+
+    public Node getEnd() {
+        return end;
+    }
+
+    public int getNumberOfNodes() {
+        return numberOfNodes;
+    }
+
+    public void setNumberOfNodes(int numberOfNodes) {
+        this.numberOfNodes = numberOfNodes;
+    }
+
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
     }
 }

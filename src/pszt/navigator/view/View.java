@@ -59,12 +59,11 @@ public class View implements ViewInterface
         logPanel = new LogPanel();
 
         //wrapper dla paneli ustawien i logow
-        rightPanel = new JPanel();
-        rightPanel.setLayout(new BorderLayout());
+        rightPanel = new JPanel(new GridLayout(2,1));
 
         //dodanie paneli do prawego panelu
-        rightPanel.add(logPanel, BorderLayout.SOUTH);
-        rightPanel.add(settingsPanel, BorderLayout.NORTH);
+        rightPanel.add(settingsPanel);
+        rightPanel.add(logPanel);
 
         //pasek menu
         menuBar = new MenuBar();
