@@ -49,8 +49,6 @@ public class Controller
         }
 
         graph = new Graph(numberOfNodes, rate);
-        graph.setStarter(start);
-        graph.setFinish(end);
         view.setGraph(graph);
         view.updateView();
     }
@@ -59,6 +57,8 @@ public class Controller
     {
         if(graph != null && start != null && end != null)
         {
+            graph.setStarter(start);
+            graph.setFinish(end);
             //użycie algorytmu do rozwiązania zadania
             //TODO: 2015-12-30 aStarAlgorithm.setGraph, .solve itd
         }
