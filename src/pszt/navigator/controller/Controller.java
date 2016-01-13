@@ -44,6 +44,7 @@ public class Controller
     {
         start = end = null;
         //prymitywne sprawdzenie poprawnosci danych
+
         if(view.getNumberOfNodes()!=0 && view.getRateValue()!=0)
         {
             numberOfNodes = view.getNumberOfNodes();

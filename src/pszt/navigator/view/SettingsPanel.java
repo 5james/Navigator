@@ -4,6 +4,7 @@ import pszt.navigator.controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Line2D;
 
 /**
  * Created by Marcin on 2015-12-28.
@@ -109,4 +110,21 @@ public class SettingsPanel extends JPanel
     {
         return new Dimension(settingsPanelPreferredWidth, settingsPanelPreferredHeight);
     }
+
+    public double getRate()
+    {
+        String r = rateTextField.getText();
+        return Double.parseDouble(r);
+
+    }
+
+    public int getNumber()
+    {
+        String n = numberTextField.getText();
+        if (n.matches("[0-9]+"))
+            return Integer.parseInt(n);
+        else
+            return 0;
+    }
+
 }

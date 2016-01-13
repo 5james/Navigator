@@ -35,7 +35,6 @@ public class View implements ViewInterface
 
     public View(Controller controller)
     {
-
         this.controller = controller;
 
         //ustawienia dla okna
@@ -97,15 +96,13 @@ public class View implements ViewInterface
     @Override
     public double getRateValue()
     {
-        // TODO: 2015-12-31  
-        return 0;
+        return settingsPanel.getRate();
     }
 
     @Override
     public int getNumberOfNodes()
     {
-        // TODO: 2015-12-31  
-        return 0;
+        return settingsPanel.getNumber();
     }
 
     @Override
