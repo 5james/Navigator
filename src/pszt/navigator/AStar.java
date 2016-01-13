@@ -22,7 +22,7 @@ public class AStar {
 
 	}
 
-	void solve()
+	public ProblemState solve()
 	{
 		boolean pathFound = false;
 		while (!pathFound)
@@ -35,7 +35,7 @@ public class AStar {
 			if (found == -1)
 			{
 				System.out.println("CANNOT MAKE IT");
-				return;
+				return null;
 			}
 			else
 			{
@@ -52,7 +52,11 @@ public class AStar {
 			else
 				System.out.println("Mieli " + steps + "      " + states.size());
 		}
-		
+		if (pathFound == false)
+		{
+			next = null;
+		}
+		return next;
 	}
 	
 	private int findMinimum()
@@ -69,5 +73,13 @@ public class AStar {
 			}
 		}
 		return indexFound;
+	}
+	
+	public String getSuccessLogs()
+	{
+		String toReturn = null;
+		toReturn += "FOUND PATH IN " + steps + " STEPS\n";
+		toReturn += "LENGTH OF THAT PATH = " + next.getEstimatedLength() + "\n";
+		return toReturn;
 	}
 }

@@ -77,4 +77,12 @@ public class State implements ProblemState {
 			to.path.addElement(path.elementAt(i));
 		}
 	}
+	
+	public Vector<Node> getPath() {
+		return path;
+	}
+
+	public void setPath(Vector<Node> path) {
+		this.path = path;
+	}
 }

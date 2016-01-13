@@ -3,6 +3,8 @@ package pszt.navigator.controller;
 import pszt.navigator.AStar;
 import pszt.navigator.Graph;
 import pszt.navigator.Node;
+import pszt.navigator.ProblemState;
+import pszt.navigator.State;
 import pszt.navigator.view.View;
 
 import java.awt.*;
@@ -32,10 +34,6 @@ public class Controller
 
     private char startEndSwich; //do zaznaczania pkt startowego i końcowego
 
-    public Controller()
-    {
-        aAstarAlgorithm = new AStar();
-    }
 
     public void setView(View view)
     {
@@ -59,18 +57,27 @@ public class Controller
 
     public void solveUsingAStar()
     {
-
         graph.setStarter(start);
         graph.setFinish(end);
         if(graph != null && start != null && end != null)
         {
+        	ProblemState p = graph.init();
+        	aAstarAlgorithm = new AStar(p);
             view.displayStringOnLogPanel("Solving...");
 
             //użycie algorytmu do rozwiązania zadania
             //TODO: 2015-12-30 aStarAlgorithm.setState,
-
-            view.loadSolution(solution);
-            view.displayStringOnLogPanel("Solution not found");
+            State temp = (State) aAstarAlgorithm.solve();
+            if (temp != null)
+            {
+                solution = temp.getPath();
+                view.loadSolution(solution);
+                view.displayStringOnLogPanel(aAstarAlgorithm.getSuccessLogs());
+            }
+            else
+            {
+            	view.displayStringOnLogPanel("Solution not found");
+            }
         }
         else
         {
