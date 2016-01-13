@@ -14,6 +14,13 @@ public class Node
 	Vector<Node> neighbours = new Vector<Node>();
 	double h;
 
+	
+	public boolean equals(Node n) {
+		if (point.x == n.point.x && point.y == n.point.y)
+			return true;
+		return false;
+	}
+
 	public Point2D.Double getPoint() {
 		return point;
 	}

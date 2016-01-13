@@ -64,8 +64,12 @@ public class State implements ProblemState {
 	{
 		for (int i = 0; i < s.path.size(); i++)
 		{
-			if (s.path.elementAt(i) == node)
+			if (s.path.elementAt(i).equals(node))
+			{
+				System.out.println("--------------------------------------------------------------------");
 				return true;
+			}
+				
 		}
 		return false;
 	}
