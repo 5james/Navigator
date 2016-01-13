@@ -105,18 +105,18 @@ public class GraphPanel extends JPanel
     {
         // TODO: 2016-01-13 narysowanie rozwiązania
         solution = new ArrayList<>();
-        for(int i = 0; i < sol.size(); i++)
-        {
-            Point2D.Double translatedPointA = translateCoordinates(sol.get(i).getPoint());
-            Ellipse2D.Double node = new Ellipse2D.Double(translatedPointA.getX()-5, translatedPointA.getY()-5, nodeSize, nodeSize);
-            solution.add(node);
-            if(i< sol.size()-1)
-            {
-                Point2D.Double translatedPointB = translateCoordinates(sol.get(i).getPoint());
-                Line2D.Double line = new Line2D.Double(translatedPointA.getX(),translatedPointA.getY(),translatedPointB.getX(),translatedPointB.getY());
-                solution.add(line);
-            }
+        if(sol != null) {
+            for (int i = 0; i < sol.size(); i++) {
+                Point2D.Double translatedPointA = translateCoordinates(sol.get(i).getPoint());
+                Ellipse2D.Double node = new Ellipse2D.Double(translatedPointA.getX() - 5, translatedPointA.getY() - 5, nodeSize, nodeSize);
+                solution.add(node);
+                if (i < sol.size() - 1) {
+                    Point2D.Double translatedPointB = translateCoordinates(sol.get(i).getPoint());
+                    Line2D.Double line = new Line2D.Double(translatedPointA.getX(), translatedPointA.getY(), translatedPointB.getX(), translatedPointB.getY());
+                    solution.add(line);
+                }
 
+            }
         }
 
     }

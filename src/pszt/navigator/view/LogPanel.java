@@ -1,6 +1,7 @@
 package pszt.navigator.view;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.StyleContext;
 import java.awt.*;
@@ -45,8 +46,15 @@ public class LogPanel extends JPanel
         return new Dimension(logPanelPreferredWidth, logPanelPreferredHeight);
     }
 
-    public void displayString(String s)
+
+    public void displayString(String string)
     {
-        // TODO: 2015-12-31
+        String logMessage = string + '\n';
+
+        try {
+            doc.insertString(doc.getLength(),logMessage,null);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
     }
 }

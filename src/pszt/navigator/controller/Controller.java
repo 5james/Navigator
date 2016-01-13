@@ -54,25 +54,33 @@ public class Controller
         graph = new Graph(numberOfNodes, rate);
         view.setGraph(graph);
         view.updateView();
+        view.displayStringOnLogPanel("Graph generated!");
     }
 
     public void solveUsingAStar()
     {
+
         graph.setStarter(start);
         graph.setFinish(end);
         if(graph != null && start != null && end != null)
         {
+            view.displayStringOnLogPanel("Solving...");
 
             //użycie algorytmu do rozwiązania zadania
             //TODO: 2015-12-30 aStarAlgorithm.setState,
 
             view.loadSolution(solution);
+            view.displayStringOnLogPanel("Solution not found");
+        }
+        else
+        {
+            view.displayStringOnLogPanel("Krzycz Trybson");
         }
 
 
         //aktualizacja widoku
         view.updateView();
-
+        /*
         if(Desktop.isDesktopSupported())
         {
             try {
@@ -83,6 +91,7 @@ public class Controller
                 e.printStackTrace();
             }
         }
+        */
     }
 
     public char getStartEndSwich()
