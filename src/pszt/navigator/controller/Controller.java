@@ -9,6 +9,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Vector;
 
 /**
  * Created by Marcin on 2015-12-30.
@@ -20,12 +21,14 @@ public class Controller
     private Graph graph;
     private AStar aAstarAlgorithm;
 
+    private Vector<Node> solution;
+
     private Node start;
     private Node end;
 
     //parametry dla grafu, defaultowe wartosci
     private int numberOfNodes = 100;
-    private double rate = 0.4;
+    private double rate = 0.1;
 
     private char startEndSwich; //do zaznaczania pkt startowego i końcowego
 
@@ -55,14 +58,17 @@ public class Controller
 
     public void solveUsingAStar()
     {
+        graph.setStarter(start);
+        graph.setFinish(end);
         if(graph != null && start != null && end != null)
         {
-            graph.setStarter(start);
-            graph.setFinish(end);
 
             //użycie algorytmu do rozwiązania zadania
-            //TODO: 2015-12-30 aStarAlgorithm.setGraph, .solve itd
+            //TODO: 2015-12-30 aStarAlgorithm.setState,
+
+            view.loadSolution(solution);
         }
+
 
         //aktualizacja widoku
         view.updateView();

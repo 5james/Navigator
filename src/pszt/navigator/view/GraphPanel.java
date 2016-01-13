@@ -31,7 +31,10 @@ public class GraphPanel extends JPanel
 
     private Controller controller;
     private Graph graph;
-    private ArrayList<Shape> shapes;    //rysowane nody i połączenia między nimi
+    private ArrayList<Shape> shapes;    //rysowane nody
+    private ArrayList<Shape> edges;     //krawedzie
+    private ArrayList<Shape> solution;  //i rozwiązanie
+
     private ArrayList<Point2D.Double> nodesCoordinates; //współrzędne node'ów (w układzie o osiach [0..1]
 
     private int greenStartPoint, redEndPoint, highlightedPoint; //indeksy (start,end,highlited) w shapes - potrzebne do malowania na właściwy kolor
@@ -62,7 +65,7 @@ public class GraphPanel extends JPanel
             {
                 nodesCoordinates.add(n.getPoint());
                 Point2D.Double translatedPoint = translateCoordinates(n.getPoint());
-                Ellipse2D.Double node = new Ellipse2D.Double(translatedPoint.getX(), translatedPoint.getY(), nodeSize, nodeSize);
+                Ellipse2D.Double node = new Ellipse2D.Double(translatedPoint.getX()-5, translatedPoint.getY()-5, nodeSize, nodeSize);
                 shapes.add(node);
             }
         }
@@ -74,7 +77,48 @@ public class GraphPanel extends JPanel
 
     public void createLines()
     {
-        // TODO: 2015-12-30 metoda podobna do createNodes, można dodać ArrayList linii
+        if(graph != null)
+        {
+            edges = new ArrayList<>();
+            Vector<Node> nodes =  graph.getNodes();
+            Vector<Node> currentNodeNeighbours;
+            for(Node n : nodes)
+            {
+                Point2D.Double translatedPointA = translateCoordinates(n.getPoint());
+                currentNodeNeighbours = n.getNeighbours();
+                for(Node nx : currentNodeNeighbours)
+                {
+                    Point2D.Double translatedPointB = translateCoordinates(nx.getPoint());
+                    Line2D.Double line = new Line2D.Double(translatedPointA.getX(),translatedPointA.getY(),translatedPointB.getX(),translatedPointB.getY());
+                    edges.add(line);
+                }
+
+            }
+        }
+        else
+        {
+            System.out.println("At first, you have to generate graph");
+        }
+    }
+
+    public void createSolutionShapes(Vector<Node> sol)
+    {
+        // TODO: 2016-01-13 narysowanie rozwiązania
+        solution = new ArrayList<>();
+        for(int i = 0; i < sol.size(); i++)
+        {
+            Point2D.Double translatedPointA = translateCoordinates(sol.get(i).getPoint());
+            Ellipse2D.Double node = new Ellipse2D.Double(translatedPointA.getX()-5, translatedPointA.getY()-5, nodeSize, nodeSize);
+            solution.add(node);
+            if(i< sol.size()-1)
+            {
+                Point2D.Double translatedPointB = translateCoordinates(sol.get(i).getPoint());
+                Line2D.Double line = new Line2D.Double(translatedPointA.getX(),translatedPointA.getY(),translatedPointB.getX(),translatedPointB.getY());
+                solution.add(line);
+            }
+
+        }
+
     }
 
     //skalowanie - przejście ze wzpółrzędnych z zakresu [0..1] na współrzędne w pikselach
@@ -115,6 +159,21 @@ public class GraphPanel extends JPanel
                     else {
                         g2.setPaint(Color.BLACK);
                         g2.fill(s);
+                    }
+                }
+            }
+            for(Shape e : edges)
+            {
+                if(e!=null)
+                {
+                    g2.draw(e);
+                }
+            }
+            if(solution != null) {
+                for (Shape s : solution) {
+                    g2.setPaint(Color.RED);
+                    if (s != null) {
+                        g2.draw(s);
                     }
                 }
             }

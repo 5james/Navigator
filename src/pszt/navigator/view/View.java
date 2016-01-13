@@ -1,6 +1,7 @@
 package pszt.navigator.view;
 
 import pszt.navigator.Graph;
+import pszt.navigator.Node;
 import pszt.navigator.controller.Controller;
 
 import javax.swing.*;
@@ -8,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
+import java.util.Vector;
 
 
 /**
@@ -110,6 +112,12 @@ public class View implements ViewInterface
     public void displayStringOnLogPanel(String s)
     {
         logPanel.displayString(s);
+    }
+
+    @Override
+    public void loadSolution(Vector<Node> solution)
+    {
+        graphPanel.createSolutionShapes(solution);
     }
 }
 
