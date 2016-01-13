@@ -110,10 +110,10 @@ public class GraphPanel extends JPanel
         if(sol != null) {
             for (int i = 0; i < sol.size(); i++) {
                 Point2D.Double translatedPointA = translateCoordinates(sol.get(i).getPoint());
-                Ellipse2D.Double node = new Ellipse2D.Double(translatedPointA.getX() - 5, translatedPointA.getY() - 5, nodeSize+2, nodeSize+2);
+                Ellipse2D.Double node = new Ellipse2D.Double(translatedPointA.getX() - 7, translatedPointA.getY() - 7, nodeSize+2, nodeSize+2);
                 solution.add(node);
                 if (i < sol.size() - 1) {
-                    Point2D.Double translatedPointB = translateCoordinates(sol.get(i).getPoint());
+                    Point2D.Double translatedPointB = translateCoordinates(sol.get(i+1).getPoint());
                     Line2D.Double line = new Line2D.Double(translatedPointA.getX(), translatedPointA.getY(), translatedPointB.getX(), translatedPointB.getY());
                     solution.add(line);
                 }
@@ -134,6 +134,7 @@ public class GraphPanel extends JPanel
     {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+
 
         if(graph != null)
         {
@@ -174,6 +175,7 @@ public class GraphPanel extends JPanel
             if(solution != null) {
                 for (Shape s : solution) {
                     g2.setPaint(Color.RED);
+                    g2.setStroke(new BasicStroke(4));
                     if (s != null) {
                         g2.draw(s);
                         g2.fill(s);
