@@ -66,7 +66,7 @@ public class State implements ProblemState {
 		{
 			if (s.path.elementAt(i).equals(node))
 			{
-				System.out.println("--------------------------------------------------------------------");
+				//System.out.println("--------------------------------------------------------------------");
 				return true;
 			}
 				

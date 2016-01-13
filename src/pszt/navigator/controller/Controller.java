@@ -83,7 +83,7 @@ public class Controller
         }
         else
         {
-            view.displayStringOnLogPanel("Krzycz Trybson");
+            view.displayStringOnLogPanel("Check settings!");
         }
 
 

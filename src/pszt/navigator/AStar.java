@@ -49,8 +49,8 @@ public class AStar {
 				System.out.println("LENGTH OF THAT PATH = " + next.getEstimatedLength());
 				pathFound = true;
 			}
-			else
-				System.out.println("Mieli " + steps + "      " + states.size());
+			//else
+			//	System.out.println("Mieli " + steps + "      " + states.size());
 		}
 		if (pathFound == false)
 		{
