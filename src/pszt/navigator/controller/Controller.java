@@ -42,6 +42,7 @@ public class Controller
 
     public void generateNewGraph()
     {
+        start = end = null;
         //prymitywne sprawdzenie poprawnosci danych
         if(view.getNumberOfNodes()!=0 && view.getRateValue()!=0)
         {

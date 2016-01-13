@@ -78,7 +78,7 @@ public class AStar {
 	public String getSuccessLogs()
 	{
 		String toReturn = null;
-		toReturn += "FOUND PATH IN " + steps + " STEPS\n";
+		toReturn = "FOUND PATH IN " + steps + " STEPS\n";
 		toReturn += "LENGTH OF THAT PATH = " + next.getEstimatedLength() + "\n";
 		return toReturn;
 	}

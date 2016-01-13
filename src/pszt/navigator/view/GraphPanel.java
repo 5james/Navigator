@@ -47,11 +47,13 @@ public class GraphPanel extends JPanel
         this.addMouseListener(createMouseListener());
         this.setBackground(Color.WHITE);
         greenStartPoint = redEndPoint = highlightedPoint = -1;
+        solution = null;
     }
 
     public void setGraph(Graph graph)
     {
         this.graph = graph;
+        solution = null;
     }
 
     public void createNodes()
@@ -108,7 +110,7 @@ public class GraphPanel extends JPanel
         if(sol != null) {
             for (int i = 0; i < sol.size(); i++) {
                 Point2D.Double translatedPointA = translateCoordinates(sol.get(i).getPoint());
-                Ellipse2D.Double node = new Ellipse2D.Double(translatedPointA.getX() - 5, translatedPointA.getY() - 5, nodeSize, nodeSize);
+                Ellipse2D.Double node = new Ellipse2D.Double(translatedPointA.getX() - 5, translatedPointA.getY() - 5, nodeSize+2, nodeSize+2);
                 solution.add(node);
                 if (i < sol.size() - 1) {
                     Point2D.Double translatedPointB = translateCoordinates(sol.get(i).getPoint());
@@ -174,6 +176,7 @@ public class GraphPanel extends JPanel
                     g2.setPaint(Color.RED);
                     if (s != null) {
                         g2.draw(s);
+                        g2.fill(s);
                     }
                 }
             }
