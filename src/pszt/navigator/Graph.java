@@ -127,51 +127,9 @@ public class Graph implements Problem {
 		System.out.println(size);
 	}
 	
-
-	@Override
-	public List<ProblemState> extendStates(ProblemState p) {
-		List<ProblemState> tempList= new ArrayList<ProblemState>();
-		State problem = (State)p;
-		Node back = problem.path.lastElement();
-		for (int i = 0; i < back.neighbours.size(); i++)
-		{
-			State s = new State();
-			copyPath(problem, s);
-			
-			if (!stateHasNode(s, back.neighbours.elementAt(i)))
-			{
-				s.path.add(back.neighbours.elementAt(i));
-				double tempDistance = back.point.distance(back.neighbours.elementAt(i).point);
-				s.distanceTraveled += tempDistance;
-				tempList.add(s);
-			}
-		}
-		
-		return tempList;
-	}
-	
-	private boolean stateHasNode(State s, Node node)
-	{
-		for (int i = 0; i < s.path.size(); i++)
-		{
-			if (s.path.elementAt(i) == node)
-				return true;
-		}
-		return false;
-	}
-	
-	private void copyPath(State from, State to)
-	{
-		for (int i = 0; i < from.path.size(); i++)
-		{
-			to.path.addElement(from.path.elementAt(i));
-		}
-	}
-	
-
 	@Override
 	public ProblemState init() {
-		State s = new State();
+		State s = new State(this);
 		s.path.addElement(starter);
 		return s;
 	}

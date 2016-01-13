@@ -6,13 +6,10 @@ import java.util.List;
 public class AStar {
 	List<ProblemState> states = new ArrayList<ProblemState>();
 	ProblemState next;
-	private Problem problem;
 	int steps = 0;
 	
-	public AStar(Problem p)
+	public AStar(ProblemState tempState)
 	{
-		problem=p;
-		ProblemState tempState = p.init();
 		states.add(tempState);
 		next = tempState;
 	}
@@ -30,7 +27,7 @@ public class AStar {
 		boolean pathFound = false;
 		while (!pathFound)
 		{
-			states.addAll(problem.extendStates(next));
+			states.addAll(next.extendStates());
 			states.remove(next);
 			steps++;
 			
@@ -45,7 +42,7 @@ public class AStar {
 				next = states.get(found);
 			}
 			
-			if (next.isFinish(problem.getFinish()))
+			if (next.isFinish())
 			{
 				next.wypiszwierzcholki();
 				System.out.println("FOUND PATH IN " + steps + " STEPS");
