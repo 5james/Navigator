@@ -1,7 +1,6 @@
 package pszt.navigator;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class AStar {
@@ -36,37 +35,41 @@ public class AStar {
 			//lista wszystkich nowych stanów
 			List<ProblemState> newStates = new ArrayList<ProblemState>();
 			newStates = next.extendStates();
-
+			
+			//lista stanów do usunięcia
+			List<ProblemState> toDeleteStates = new ArrayList<ProblemState>();
+			
 			//dla każdego takiego stanu sprawdzamy, czy warto go dodawać
-			Iterator<ProblemState> i = newStates.iterator();
-			while (i.hasNext())
+			for (ProblemState newState : newStates)
 			{
-				ProblemState newState = i.next();
-				
 			    for (ProblemState closedState : closedStates)
 			    {
 			    	//jeśli mają wspólny wierzchołek, ale jakość nowego stanu jest gorsza
 			    	if (newState.isEqual(closedState) && newState.getEstimatedLength() > closedState.getEstimatedLength())
 			    	{
-			    		//usuwamy nowy stan z listy do dodania
-			    		i.remove();
+			    		//stan do usunięcia
+			    		toDeleteStates.add(newState);
 			    	}			    	
 			    }
-
 			    for (ProblemState openState : states)
 			    {
 			    	//analogicznie dla listy stanów otwartych, jeśli mają wspólny wierzchołek ale nowy jest gorszy
 			    	if (newState.isEqual(openState) && newState.getEstimatedLength() > openState.getEstimatedLength())
 			    	{
-			    		//to usuwamy z listy do dodania
-			    		i.remove();
+			    		//to do usunięcia
+			    		toDeleteStates.add(newState);
 			    	}
+			    	
 			    }
 			    /**
 			     *  @todo można potem sprawdzić, czy zamienić kolejność sprawdzania, które najpierw, co korzystniejsze
 			     */
 			}
 			
+			//usuwamy stany do usunięcia przed dodaniem
+			newStates.removeAll(toDeleteStates);
+			
+			//dodajemy nowe stany do openStates
 			states.addAll(newStates);
 			
 			//przenosimy rozpatrzony stan do closedStates
