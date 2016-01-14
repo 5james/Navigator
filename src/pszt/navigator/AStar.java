@@ -1,10 +1,12 @@
 package pszt.navigator;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class AStar {
 	List<ProblemState> states = new ArrayList<ProblemState>();
+	List<ProblemState> closedStates = new ArrayList<ProblemState>();
 	ProblemState next;
 	int steps = 0;
 	
@@ -27,8 +29,50 @@ public class AStar {
 		boolean pathFound = false;
 		while (!pathFound)
 		{
-			states.addAll(next.extendStates());
+			/* temp
+			 * states.addAll(next.extendStates());
+			 * temp*/
+			
+			//lista wszystkich nowych stanów
+			List<ProblemState> newStates = new ArrayList<ProblemState>();
+			newStates = next.extendStates();
+
+			//dla każdego takiego stanu sprawdzamy, czy warto go dodawać
+			Iterator<ProblemState> i = newStates.iterator();
+			while (i.hasNext())
+			{
+				ProblemState newState = i.next();
+				
+			    for (ProblemState closedState : closedStates)
+			    {
+			    	//jeśli mają wspólny wierzchołek, ale jakość nowego stanu jest gorsza
+			    	if (newState.isEqual(closedState) && newState.getEstimatedLength() > closedState.getEstimatedLength())
+			    	{
+			    		//usuwamy nowy stan z listy do dodania
+			    		i.remove();
+			    	}			    	
+			    }
+
+			    for (ProblemState openState : states)
+			    {
+			    	//analogicznie dla listy stanów otwartych, jeśli mają wspólny wierzchołek ale nowy jest gorszy
+			    	if (newState.isEqual(openState) && newState.getEstimatedLength() > openState.getEstimatedLength())
+			    	{
+			    		//to usuwamy z listy do dodania
+			    		i.remove();
+			    	}
+			    }
+			    /**
+			     *  @todo można potem sprawdzić, czy zamienić kolejność sprawdzania, które najpierw, co korzystniejsze
+			     */
+			}
+			
+			states.addAll(newStates);
+			
+			//przenosimy rozpatrzony stan do closedStates
 			states.remove(next);
+			closedStates.add(next);
+			
 			steps++;
 			
 			int found = findMinimum();
@@ -49,8 +93,10 @@ public class AStar {
 				System.out.println("LENGTH OF THAT PATH = " + next.getEstimatedLength());
 				pathFound = true;
 			}
-			//else
-			//	System.out.println("Mieli " + steps + "      " + states.size());
+			/*
+			else
+				System.out.println("Mieli " + steps + "      " + states.size());
+			*/
 		}
 		if (pathFound == false)
 		{

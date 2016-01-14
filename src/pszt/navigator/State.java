@@ -60,6 +60,25 @@ public class State implements ProblemState {
 		return tempList;
 	}
 	
+	@Override
+	public boolean isEqual(ProblemState other)
+	{
+		return hasSameEnd((State) other);
+	}
+	
+	/**
+	 * sprawdza, czy stany mają taki sam wierzchołek końcowy
+	 * wykorzystywana do zaimplementowania isEqual()
+	 * 
+	 * @param drugi stan z którym porównujemy
+	 * @return true, jeśli takie same
+	 */
+	private boolean hasSameEnd(State other)
+	{
+		return this.path.lastElement().equals(other.path.lastElement());
+	}
+	
+	
 	private boolean stateHasNode(State s, Node node)
 	{
 		for (int i = 0; i < s.path.size(); i++)
