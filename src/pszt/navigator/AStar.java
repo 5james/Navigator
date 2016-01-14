@@ -82,7 +82,7 @@ public class AStar {
 			
 			if (next.isFinish())
 			{
-				next.wypiszwierzcholki();
+				next.getSolution();
 				System.out.println("FOUND PATH IN " + steps + " STEPS");
 				System.out.println("LENGTH OF THAT PATH = " + next.getEstimatedLength());
 				pathFound = true;

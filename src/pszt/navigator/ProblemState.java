@@ -15,5 +15,5 @@ public interface ProblemState {
 	public boolean isEqual(ProblemState other);
 	
 	//TODO debug usun
-	public void wypiszwierzcholki();
+	public void getSolution();
 }

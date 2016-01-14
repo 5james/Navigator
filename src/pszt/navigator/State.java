@@ -30,7 +30,7 @@ public class State implements ProblemState {
 		return false;
 	}
 	
-	public void wypiszwierzcholki()
+	public void getSolution()
 	{
 		for (int i = 0; i < path.size(); i++)
 		{
