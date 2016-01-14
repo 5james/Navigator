@@ -28,10 +28,6 @@ public class AStar {
 		boolean pathFound = false;
 		while (!pathFound)
 		{
-			/* temp
-			 * states.addAll(next.extendStates());
-			 * temp*/
-			
 			//lista wszystkich nowych stanów
 			List<ProblemState> newStates = new ArrayList<ProblemState>();
 			newStates = next.extendStates();
@@ -43,11 +39,11 @@ public class AStar {
 			for (ProblemState newState : newStates)
 			{
 			    for (ProblemState closedState : closedStates)
-			    {
+			    {  	
 			    	//jeśli mają wspólny wierzchołek, ale jakość nowego stanu jest gorsza
 			    	if (newState.isEqual(closedState) && newState.getEstimatedLength() > closedState.getEstimatedLength())
 			    	{
-			    		//stan do usunięcia
+			    		//stan do usunięcia przed dodaniem
 			    		toDeleteStates.add(newState);
 			    	}			    	
 			    }
@@ -58,14 +54,9 @@ public class AStar {
 			    	{
 			    		//to do usunięcia
 			    		toDeleteStates.add(newState);
-			    	}
-			    	
+			    	}   	
 			    }
-			    /**
-			     *  @todo można potem sprawdzić, czy zamienić kolejność sprawdzania, które najpierw, co korzystniejsze
-			     */
-			}
-			
+			}			
 			//usuwamy stany do usunięcia przed dodaniem
 			newStates.removeAll(toDeleteStates);
 			
@@ -81,7 +72,7 @@ public class AStar {
 			int found = findMinimum();
 			if (found == -1)
 			{
-				System.out.println("CANNOT MAKE IT");
+				/*System.out.println("CANNOT MAKE IT");*/
 				return null;
 			}
 			else
