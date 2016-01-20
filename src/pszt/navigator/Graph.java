@@ -7,15 +7,6 @@ import java.util.Vector;
 
 public class Graph implements Problem {
 
-
-//Marcin 2015-12-29
-//moved outsite to make this class public
-//	class Node {
-//		Point2D.Double point;
-//		Vector<Node> neighbours = new Vector<Node>();
-//		double h;
-//	}
-
 	private Node starter = null;
 	private Node finish = null;
 	private Vector<Node> nodes = new Vector<Node>();
@@ -23,9 +14,6 @@ public class Graph implements Problem {
 	public Graph(int amountOfPoints, double rate)
 	{
 		createNodes(amountOfPoints);
-		
-		//
-		//System.out.println(x);
 		createNeighbourhood(rate);
 
 		//TODO debug usun

@@ -7,7 +7,7 @@ import javax.swing.*;
  */
 public class MenuBar extends JMenuBar
 {
-    private JMenu navigator;
+    private JMenu menu;
     private JMenuItem helpMenu;
     private JMenuItem aboutMenu;
 
@@ -16,19 +16,20 @@ public class MenuBar extends JMenuBar
     public MenuBar()
     {
 
-        navigator = new JMenu("Menu");
+        menu = new JMenu("Menu");
+        menuAction = new MenuAction();
 
         helpMenu = new JMenuItem("Help");
         helpMenu.addActionListener(menuAction);
         helpMenu.setName("Help");
-        navigator.add(helpMenu);
+        menu.add(helpMenu);
 
         aboutMenu = new JMenuItem("About");
         aboutMenu.setName("About");
         aboutMenu.addActionListener(menuAction);
-        navigator.add(aboutMenu);
+        menu.add(aboutMenu);
 
-        this.add(navigator);
+        this.add(menu);
     }
 
     // TODO: 2015-12-31 dodanie helpa i info o programie 

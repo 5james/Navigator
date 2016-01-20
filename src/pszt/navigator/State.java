@@ -10,20 +10,23 @@ public class State implements ProblemState {
 	public double distanceTraveled = 0;
 	Graph graph;
 	
-	State (Graph g){
+	State (Graph g)
+	{
 		graph = g;
 	}
 
 	@Override
-	public double getEstimatedLength() {
+	public double getEstimatedLength()
+	{
 		double estimatedLength = distanceTraveled;
 		estimatedLength += path.lastElement().h;
 		return estimatedLength;
 	}
 
 	@Override
-	public boolean isFinish() {
-		Node nodeFinish = (Node) graph.getFinish();
+	public boolean isFinish()
+	{
+		Node nodeFinish = graph.getFinish();
 		Node pathFinish = path.lastElement();
 		if (pathFinish.equals(nodeFinish))
 			return true;
@@ -40,7 +43,8 @@ public class State implements ProblemState {
 	}
 
 	@Override
-	public List<ProblemState> extendStates() {
+	public List<ProblemState> extendStates()
+	{
 		List<ProblemState> tempList= new ArrayList<ProblemState>();
 		Node back = path.lastElement();
 		for (int i = 0; i < back.neighbours.size(); i++)
@@ -70,7 +74,7 @@ public class State implements ProblemState {
 	 * sprawdza, czy stany mają taki sam wierzchołek końcowy
 	 * wykorzystywana do zaimplementowania isEqual()
 	 * 
-	 * @param drugi stan z którym porównujemy
+	 * @param other - drugi stan z którym porównujemy
 	 * @return true, jeśli takie same
 	 */
 	private boolean hasSameEnd(State other)
@@ -101,11 +105,13 @@ public class State implements ProblemState {
 		}
 	}
 	
-	public Vector<Node> getPath() {
+	public Vector<Node> getPath()
+	{
 		return path;
 	}
 
-	public void setPath(Vector<Node> path) {
+	public void setPath(Vector<Node> path)
+	{
 		this.path = path;
 	}
 }

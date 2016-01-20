@@ -105,7 +105,6 @@ public class GraphPanel extends JPanel
 
     public void createSolutionShapes(Vector<Node> sol)
     {
-        // TODO: 2016-01-13 narysowanie rozwiązania
         solution = new ArrayList<>();
         if(sol != null) {
             for (int i = 0; i < sol.size(); i++) {
@@ -117,10 +116,8 @@ public class GraphPanel extends JPanel
                     Line2D.Double line = new Line2D.Double(translatedPointA.getX(), translatedPointA.getY(), translatedPointB.getX(), translatedPointB.getY());
                     solution.add(line);
                 }
-
             }
         }
-
     }
 
     //skalowanie - przejście ze wzpółrzędnych z zakresu [0..1] na współrzędne w pikselach
@@ -140,6 +137,16 @@ public class GraphPanel extends JPanel
         {
             createNodes();
             createLines();
+
+            g2.setPaint(Color.BLACK);
+            for(Shape e : edges)
+            {
+                if(e!=null)
+                {
+                    g2.draw(e);
+                }
+            }
+
             for (Shape s : shapes)
             {
                 if (s != null)
@@ -165,16 +172,11 @@ public class GraphPanel extends JPanel
                     }
                 }
             }
-            for(Shape e : edges)
-            {
-                if(e!=null)
-                {
-                    g2.draw(e);
-                }
-            }
+
+            g2.setPaint(Color.RED);
             if(solution != null) {
                 for (Shape s : solution) {
-                    g2.setPaint(Color.RED);
+
                     g2.setStroke(new BasicStroke(4));
                     if (s != null) {
                         g2.draw(s);

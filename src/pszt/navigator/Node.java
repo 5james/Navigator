@@ -15,33 +15,40 @@ public class Node
 	double h;
 
 	
-	public boolean equals(Node n) {
+	public boolean equals(Node n)
+	{
 		if (point.x == n.point.x && point.y == n.point.y)
 			return true;
 		return false;
 	}
 
-	public Point2D.Double getPoint() {
+	public Point2D.Double getPoint()
+	{
 		return point;
 	}
 
-	public void setPoint(Point2D.Double point) {
+	public void setPoint(Point2D.Double point)
+	{
 		this.point = point;
 	}
 
-	public Vector<Node> getNeighbours() {
+	public Vector<Node> getNeighbours()
+	{
 		return neighbours;
 	}
 
-	public void setNeighbours(Vector<Node> neighbours) {
+	public void setNeighbours(Vector<Node> neighbours)
+	{
 		this.neighbours = neighbours;
 	}
 
-	public double getH() {
+	public double getH()
+	{
 		return h;
 	}
 
-	public void setH(double h) {
+	public void setH(double h)
+	{
 		this.h = h;
 	}
 }

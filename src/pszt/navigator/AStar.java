@@ -15,14 +15,6 @@ public class AStar {
 		next = tempState;
 	}
 
-	//Marcin 2015-12-30
-	//bezparametrowy konstruktor, uzywany w kontrolerze
-	//z tego co pamietam chcemy zmienic AStar by nie uzywal obiektu Problemu (w domysle grafu), wiec konstruktor jak znalazl ;)
-	public AStar()
-	{
-
-	}
-
 	public ProblemState solve()
 	{
 		boolean pathFound = false;
@@ -87,10 +79,7 @@ public class AStar {
 				System.out.println("LENGTH OF THAT PATH = " + next.getEstimatedLength());
 				pathFound = true;
 			}
-			/*
-			else
-				System.out.println("Mieli " + steps + "      " + states.size());
-			*/
+
 		}
 		if (pathFound == false)
 		{
@@ -117,8 +106,7 @@ public class AStar {
 	
 	public String getSuccessLogs()
 	{
-		String toReturn = null;
-		toReturn = "FOUND PATH IN " + steps + " STEPS\n";
+		String toReturn = "FOUND PATH IN " + steps + " STEPS\n";
 		toReturn += "LENGTH OF THAT PATH = " + next.getEstimatedLength() + "\n";
 		return toReturn;
 	}
